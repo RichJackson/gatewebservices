@@ -1,0 +1,10 @@
+.nb-gradle/*
+build/*
+.gradle/*
+libs/*
+private/*
+nbproject/*
+.nb-gradle-properties
+.idea/*
+turbo-laser*log
+*.jar

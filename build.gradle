@@ -1,0 +1,40 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.4.2.RELEASE")
+    }
+}
+
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+
+springBoot {
+    mainClass = "webservice.Application"
+}
+jar {
+    baseName = 'gatewebservices'
+    version =  '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile 'uk.ac.gate:gate-core:8.1'
+    compile 'xml-apis:xml-apis:1.4.01'
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile('com.jayway.jsonpath:json-path')
+    testCompile("junit:junit")
+}
+
