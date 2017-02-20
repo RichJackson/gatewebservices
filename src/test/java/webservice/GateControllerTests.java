@@ -57,7 +57,7 @@ public class GateControllerTests {
 
     @Test
     public void testBioyodie() throws Exception {
-        this.mockMvc.perform(post("/bioyodie").content("The man has anxiety. He also has chest pain"))
+        this.mockMvc.perform(post("/gate").content("The man has anxiety. He also has chest pain"))
                 .andDo(print()).andExpect(status().isOk())
                 .andExpect(jsonPath("$.entities.bioyodie[2]['TUI']").value("T048"));
     }

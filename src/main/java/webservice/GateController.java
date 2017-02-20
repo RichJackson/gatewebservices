@@ -65,7 +65,7 @@ public class GateController {
     }
 
     //refactor this at some point to use the pool strategy
-    @RequestMapping(value = "/bioyodie", method = RequestMethod.POST, headers = "Accept=*")
+    @RequestMapping(value = "/gate", method = RequestMethod.POST, headers = "Accept=*")
     @ResponseBody
     public  String process(HttpServletResponse response, @RequestBody String text)
             throws ResourceInstantiationException, ExecutionException, IOException {
