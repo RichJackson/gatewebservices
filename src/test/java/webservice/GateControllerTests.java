@@ -29,12 +29,15 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
+@TestPropertySource({
+        "classpath:application.properties"})
 public class GateControllerTests {
 
 
@@ -56,7 +59,7 @@ public class GateControllerTests {
     public void testBioyodie() throws Exception {
         this.mockMvc.perform(post("/bioyodie").content("The man has anxiety. He also has chest pain"))
                 .andDo(print()).andExpect(status().isOk())
-                .andExpect(jsonPath("$.entities.bioyodie[0]['TUI']").value("T184"));
+                .andExpect(jsonPath("$.entities.bioyodie[2]['TUI']").value("T048"));
     }
 
 
