@@ -11,16 +11,18 @@ import gate.creole.ResourceInstantiationException;
 import gate.util.GateException;
 import gate.util.persistence.PersistenceManager;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.*;
 import utils.DocUtils;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletResponse;
 
+@ComponentScan({"utils"})
 @RestController
 public class GateController {
-    private DocUtils docUtils;
     private LinkedBlockingQueue<CorpusController> gateQueue;
     private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(GateController.class);
 
@@ -32,6 +34,9 @@ public class GateController {
 
     @Value("${gateHome}")
     private String gateHome;
+
+    @Autowired
+    DocUtils docUtils;
 
     @PostConstruct
     public void init() throws GateException, IOException, URISyntaxException {
@@ -58,7 +63,7 @@ public class GateController {
             gateQueue.add(pipeline);
         }
         LOG.info("CorpusController queue is populated. Size is " +gateQueue.size());
-        docUtils = new DocUtils();
+
 
 
 

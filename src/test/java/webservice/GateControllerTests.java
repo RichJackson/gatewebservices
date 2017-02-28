@@ -55,6 +55,8 @@ public class GateControllerTests {
                 .andExpect(xpath("/GateDocument/AnnotationSet[@Name='Bio']/Annotation[@Type='Symptom']").exists());
     }
 
+    //can be used if testing with the bioyodie NER application
+    @Ignore
     @Test
     public void testBioyodie() throws Exception {
         this.mockMvc.perform(post("/gate").content("The man has anxiety. He also has chest pain"))
@@ -62,5 +64,10 @@ public class GateControllerTests {
                 .andExpect(jsonPath("$.entities.bioyodie[2]['TUI']").value("T048"));
     }
 
-
+    @Test
+    public void testAnnie() throws Exception {
+        this.mockMvc.perform(post("/gate").content("The man is called David. His friends name is Paul"))
+                .andDo(print()).andExpect(status().isOk())
+                .andExpect(jsonPath("$.entities.Person[0]['gender']").value("male"));
+    }
 }
